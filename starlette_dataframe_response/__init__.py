@@ -1,5 +1,6 @@
 from __future__ import annotations
 import typing as t
+from collections import ChainMap
 from starlette.requests import Request
 from starlette.responses import Response
 
@@ -24,14 +25,33 @@ def guess_media_type(request: Request, *, default="application/json") -> str:
 
 class DataFrameResponse(Response):
     media_type = "application/json"
+    to_params_default = {"to_json_orient": "records"}
 
     def __init__(self, *args: t.Tuple[t.Any], **kwargs: t.Dict[str, t.Any]) -> None:
-        self.to_json_orient = kwargs.pop("to_json_orient", "records")
+        self._to_params = ChainMap(
+            {k: kwargs.pop(k) for k in list(kwargs.keys()) if k.startswith("to_")},
+            self.__class__.to_params_default,
+        )
         super().__init__(*args, **kwargs)
 
     def render(self, df: DataFrame) -> bytes:
         if self.media_type == "text/markdown":
-            return super().render(df.to_markdown())
+            i = len("to_markdown") + 1
+            kwargs = {
+                k[i:]: v
+                for k, v in self._to_params.items()
+                if k.startswith("to_markdown")
+            }
+            return super().render(df.to_markdown(**kwargs))
         elif self.media_type == "text/html":
-            return super().render(df.to_html())
-        return super().render(df.to_json(orient=self.to_json_orient))
+            i = len("to_html") + 1
+            kwargs = {
+                k[i:]: v for k, v in self._to_params.items() if k.startswith("to_html")
+            }
+            return super().render(df.to_html(**kwargs))
+        else:
+            i = len("to_json") + 1
+            kwargs = {
+                k[i:]: v for k, v in self._to_params.items() if k.startswith("to_json")
+            }
+            return super().render(df.to_json(**kwargs))
