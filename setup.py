@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 
-install_requires = ["starlette", "pandas"]
+install_requires = ["starlette", "pandas", "typing_extensions"]
 dev_requires = ["black", "flake8", "mypy"]
 tests_requires = ["pytest", "tabulate"]
 fullset_requires = [
