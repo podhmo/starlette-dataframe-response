@@ -6,7 +6,7 @@ from starlette.requests import Request
 from starlette.responses import JSONResponse
 from starlette.routing import Route
 from . import DataFrameResponse, guess_media_type
-from .dataset import vega_dataset_provider
+from .dataset import vega_dataset_provider, DatasetProvider, FunctionDatasetProvider
 
 if t.TYPE_CHECKING:
     from pandas.core.frame import DataFrame
@@ -112,7 +112,11 @@ def run(
         if sep not in dataset_provider:
             sep = "."
         mod, name = dataset_provider.rsplit(sep, 1)
-        app.dataset_provider = getattr(import_module(mod), name)
+
+        provider = getattr(import_module(mod), name)
+        if not isinstance(provider, DatasetProvider):
+            provider = FunctionDatasetProvider(provider)
+        app.dataset_provider = provider
     uvicorn.run(app, port=port, debug=debug)
 
 
