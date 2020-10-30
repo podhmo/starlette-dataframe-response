@@ -10,34 +10,35 @@ from .dataset import vega_dataset_provider, DatasetProvider, FunctionDatasetProv
 
 if t.TYPE_CHECKING:
     from pandas.core.frame import DataFrame
+    from starlette.responses import Response
 
 
-async def list_dataset(request: Request):
+async def list_dataset(request: Request) -> Response:
     r = []
     for name in app.dataset_provider.list_dataset_names():
         r.append({name: app.url_path_for("get_dataset", data=name), "method": "GET"})
     return JSONResponse(r)
 
 
-async def get_dataset(request: Request):
+async def get_dataset(request: Request) -> Response:
     df: DataFrame = app.dataset_provider.provide_dataset(request.path_params["data"])
     return DataFrameResponse(df, media_type=guess_media_type(request))
 
 
-async def get_dataset_describe(request: Request):
+async def get_dataset_describe(request: Request) -> Response:
     df: DataFrame = app.dataset_provider.provide_dataset(request.path_params["data"])
     return DataFrameResponse(
         df.describe(), to_json_orient="columns", media_type=guess_media_type(request)
     )
 
 
-async def get_dataset_columns(request: Request):
+async def get_dataset_columns(request: Request) -> Response:
     df: DataFrame = app.dataset_provider.provide_dataset(request.path_params["data"])
     columns = dict(zip(df.dtypes.index, df.dtypes.map(str)))
     return JSONResponse({"dataset": request.path_params["data"], "columns": columns})
 
 
-async def get_dataset_aggs(request: Request):
+async def get_dataset_aggs(request: Request) -> Response:
     field = request.path_params["field"]
     fns = request.query_params.getlist("fn")
     if len(fns) == 0:
@@ -59,7 +60,17 @@ async def get_dataset_aggs(request: Request):
     )
 
 
-app = Starlette(
+if t.TYPE_CHECKING:
+    import typing_extensions as tx
+
+    class App(tx.Protocol):
+        dataset_provider: DatasetProvider
+
+        def url_path_for(self, name: str, **params: t.Any) -> str:
+            ...
+
+
+app: App = Starlette(  # type:ignore
     debug=True,
     routes=[
         Route("/", list_dataset),
@@ -107,7 +118,7 @@ def run(
         try:
             from magicalimport import import_module
         except ImportError:
-            from importlib import import_module  # noqa
+            from importlib import import_module  # type:ignore # noqa
         sep = ":"
         if sep not in dataset_provider:
             sep = "."

@@ -11,7 +11,7 @@ class DatasetProvider(tx.Protocol):
     def provide_dataset(self, name: str) -> DataFrame:
         ...
 
-    def list_dataset_names(self, name: str) -> t.List[str]:
+    def list_dataset_names(self) -> t.List[str]:
         ...
 
 
@@ -19,7 +19,8 @@ class VegaDatasetProvider:
     def list_dataset_names(self) -> t.List[str]:
         from vega_datasets import data
 
-        return data.list_datasets()
+        r: t.List[str] = data.list_datasets()
+        return r
 
     def provide_dataset(self, name: str) -> DataFrame:
         from vega_datasets import data

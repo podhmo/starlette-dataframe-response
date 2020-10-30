@@ -8,7 +8,7 @@ if t.TYPE_CHECKING:
     from pandas.core.frame import DataFrame
 
 
-def guess_media_type(request: Request, *, default="application/json") -> str:
+def guess_media_type(request: Request, *, default: str = "application/json") -> str:
     format = request.query_params.get("format")
     if format == "html":
         return "text/html"
@@ -21,7 +21,7 @@ def guess_media_type(request: Request, *, default="application/json") -> str:
     elif format == "json":
         return "application/json"
 
-    content_type = request.headers.get("content-type")
+    content_type: str = request.headers.get("content-type")
     if content_type is not None:
         return content_type
     return default
@@ -31,7 +31,7 @@ class DataFrameResponse(Response):
     media_type = "application/json"
     to_params_default = {"to_json_orient": "records"}
 
-    def __init__(self, *args: t.Tuple[t.Any], **kwargs: t.Dict[str, t.Any]) -> None:
+    def __init__(self, *args: t.Any, **kwargs: t.Any) -> None:
         self._to_params = ChainMap(
             {k: kwargs.pop(k) for k in list(kwargs.keys()) if k.startswith("to_")},
             self.__class__.to_params_default,
