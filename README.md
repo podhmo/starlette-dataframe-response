@@ -6,7 +6,7 @@ Convenient, but not fast.
 
 Resources:
 
-* **Source**: https://github.com/tomwojcik/starlette-context
+* **Source**: https://github.com/podhmo/starlette-dataframe-response
 
 ### Installation 
 
