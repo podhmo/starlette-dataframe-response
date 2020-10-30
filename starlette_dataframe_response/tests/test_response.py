@@ -12,6 +12,9 @@ def _makeOne(df: pd.DataFrame, **kwargs: t.Dict[str, t.Any]) -> DataFrameRespons
     return DataFrameResponse(df, **kwargs)
 
 
+########################################
+# json
+########################################
 def test_json__with_orient_default():
     df = pd.DataFrame({"name": ["foo", "bar"], "age": [20, 0]})
     got = _makeOne(df).body
@@ -48,4 +51,18 @@ def test_json__with_date_format_iso():
     df = pd.DataFrame({"now": [date(2000, 1, 1)]})
     got = _makeOne(df, to_json_date_format="iso").body
     want = b'[{"now":"2000-01-01T00:00:00.000Z"}]'
+    assert want == got
+
+
+########################################
+# markdown
+########################################
+def test_markdown():
+    df = pd.DataFrame({"name": ["foo", "bar"], "age": [20, 0]})
+    got = _makeOne(df, media_type="text/markdown").body
+    want = b"""\
+|    | name   |   age |
+|---:|:-------|------:|
+|  0 | foo    |    20 |
+|  1 | bar    |     0 |"""
     assert want == got
