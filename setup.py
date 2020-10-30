@@ -5,7 +5,11 @@ install_requires = ["starlette", "pandas"]
 dev_requires = ["black", "flake8", "mypy"]
 tests_requires = ["pytest", "tabulate"]
 full_requires = [
-    "tabulate",  # for to_markdown()
+    # for to_markdown()
+    "tabulate",
+    # for distribute
+    "vega_datasets",
+    "uvicorn",
 ]
 setup(
     classifiers=[
