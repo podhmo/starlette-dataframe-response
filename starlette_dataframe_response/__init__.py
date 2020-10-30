@@ -12,7 +12,11 @@ def guess_media_type(request: Request, *, default="application/json") -> str:
     format = request.query_params.get("format")
     if format == "html":
         return "text/html"
-    if format == "markdown" or format == "md":
+    elif format == "csv":
+        return "text/csv"
+    elif format == "tsv":
+        return "text/tsv"
+    elif format == "markdown" or format == "md":
         return "text/markdown"
     elif format == "json":
         return "application/json"
@@ -49,6 +53,14 @@ class DataFrameResponse(Response):
                 k[i:]: v for k, v in self._to_params.items() if k.startswith("to_html")
             }
             return super().render(df.to_html(**kwargs))
+        elif self.media_type == "text/csv" or self.media_type == "text/tsv":
+            i = len("to_csv") + 1
+            kwargs = {
+                k[i:]: v for k, v in self._to_params.items() if k.startswith("to_csv")
+            }
+            if self.media_type == "text/tsv":
+                kwargs["sep"] = "\t"
+            return super().render(df.to_csv(**kwargs))
         else:
             i = len("to_json") + 1
             kwargs = {
