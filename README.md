@@ -43,7 +43,7 @@ app = Starlette(
 ```
 
 
-Then, supporting the request followings.
+Then, supporting the request following.
 
 ```
 # return dataset as json (orient=records)
@@ -57,7 +57,7 @@ GET /dataset/<some dataset>?format=markdown
 GET /dataset/<some dataset>?format=html
 ```
 
-If you want to customize json response.
+If you want to customize the JSON response.
 
 ```py
 # use orient="columns"
@@ -66,7 +66,7 @@ DataFrameResponse(df, media_type=guess_media_type(request), to_json_orient="colu
 
 ### `python -m starlette_dataframe_response.distribute`
 
-The examples are included using [vega-datasets](https://github.com/vega/vega-datasets)
+And It also includes an example using [vega-datasets](https://github.com/vega/vega-datasets).
 
 ```console
 $ python -m starlette_dataframe_response.distribute --port 8888
@@ -84,6 +84,6 @@ $ http :8888/iris/groupby/species/aggs/sepalWidth
 $ http :8888/iris/groupby/species/aggs/sepalWidth fn==min fn==max fn==count fn==mean fn==std
 ```
 
-or using your custom data provider, [_examples/00data-provider/](https://github.com/podhmo/starlette-dataframe-response/tree/main/_examples/00data-provider)
+Or if you want to see an example using a custom data, in above included app [examples/00data-provider/](https://github.com/podhmo/starlette-dataframe-response/tree/main/_examples/00data-provider)
 
 ### Contribution
