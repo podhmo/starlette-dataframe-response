@@ -84,6 +84,6 @@ $ http :8888/iris/groupby/species/aggs/sepalWidth
 $ http :8888/iris/groupby/species/aggs/sepalWidth fn==min fn==max fn==count fn==mean fn==std
 ```
 
-or using your custom data provider, [_examples/00data-provider/](_examples/00data-provider/)
+or using your custom data provider, [_examples/00data-provider/](https://github.com/podhmo/starlette-dataframe-response/tree/main/_examples/00data-provider)
 
 ### Contribution
