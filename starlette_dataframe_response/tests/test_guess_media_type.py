@@ -15,7 +15,7 @@ from starlette_dataframe_response import guess_media_type as _callFUT
         ("text/markdown", {"headers": {}, "query_string": {"format": "md"}}),
         (
             "text/csv",
-            {"headers": [(b"content-type", b"text/csv")], "query_string": {},},
+            {"headers": [(b"content-type", b"text/csv")], "query_string": {}},
         ),
         (
             "text/markdown",

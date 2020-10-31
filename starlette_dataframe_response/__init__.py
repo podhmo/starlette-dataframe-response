@@ -28,8 +28,8 @@ def guess_media_type(request: Request, *, default: str = "application/json") -> 
 
 
 def guess_params(
-    items: t.Iterator[t.Tuple[t.Any, t.Any]], *, prefix: str, trim: bool = False
-):
+    items: t.Iterable[t.Tuple[str, t.Any]], *, prefix: str, trim: bool = False
+) -> t.Dict[str, t.Any]:
     if trim:
         i = len(prefix) + 1
         return {k[i:]: v for k, v in items if k.startswith(prefix)}
