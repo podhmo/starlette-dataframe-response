@@ -22,13 +22,13 @@ async def list_dataset(request: Request) -> Response:
 
 async def get_dataset(request: Request) -> Response:
     df: DataFrame = app.dataset_provider.provide_dataset(request.path_params["data"])
-    return DataFrameResponse(df, media_type=guess_media_type(request))
+    return DataFrameResponse.from_request(request, df)
 
 
 async def get_dataset_describe(request: Request) -> Response:
     df: DataFrame = app.dataset_provider.provide_dataset(request.path_params["data"])
-    return DataFrameResponse(
-        df.describe(), to_json_orient="columns", media_type=guess_media_type(request)
+    return DataFrameResponse.from_request(
+        request, df.describe(), to_json_orient="columns"
     )
 
 
@@ -55,9 +55,7 @@ async def get_dataset_aggs(request: Request) -> Response:
     grouped_df.columns = grouped_df.columns.map(
         lambda xs: xs[0] if not xs[-1] else "-".join(xs)
     )
-    return DataFrameResponse(
-        grouped_df, media_type=request.headers.get("content-type"),
-    )
+    return DataFrameResponse.from_request(request, grouped_df)
 
 
 if t.TYPE_CHECKING:
