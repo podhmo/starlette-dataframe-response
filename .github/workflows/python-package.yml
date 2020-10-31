@@ -4,10 +4,11 @@
 name: Python package
 
 on:
-  push:
-    branches: [ master ]
+  push: []
   pull_request:
-    branches: [ master ]
+    types: [opened, synchronize]
+  schedule:
+    - cron:  '0 0 * * 6'
 
 jobs:
   build:
