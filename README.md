@@ -62,6 +62,19 @@ If you want to customize the JSON response.
 DataFrameResponse(df, media_type=guess_media_type(request), to_json_orient="columns")
 ```
 
+Or, if the response is created by `DataFrameResponse.from_request()`,
+
+```py
+DataFrameResponse.from_request(request, df)
+```
+
+it is also OK.
+
+```console
+$ use orient="columns"
+GET /dataset/<some dataset>?to_json_orient=columns
+```
+
 ### `python -m starlette_dataframe_response.distribute`
 
 And It also includes an example using [vega-datasets](https://github.com/vega/vega-datasets).
@@ -82,6 +95,6 @@ $ http :8888/iris/groupby/species/aggs/sepalWidth
 $ http :8888/iris/groupby/species/aggs/sepalWidth fn==min fn==max fn==count fn==mean fn==std
 ```
 
-Or if you want to see an example using a custom data, in above included app [examples/00data-provider/](https://github.com/podhmo/starlette-dataframe-response/tree/main/_examples/00data-provider)
+Or if you want to see an example using a custom data, in above included app [examples/01data-provider/](https://github.com/podhmo/starlette-dataframe-response/tree/main/_examples/01data-provider)
 
 ### Contribution

@@ -1,0 +1,282 @@
+[
+  {
+    "7zip": "/7zip",
+    "method": "GET"
+  },
+  {
+    "airports": "/airports",
+    "method": "GET"
+  },
+  {
+    "annual-precip": "/annual-precip",
+    "method": "GET"
+  },
+  {
+    "anscombe": "/anscombe",
+    "method": "GET"
+  },
+  {
+    "barley": "/barley",
+    "method": "GET"
+  },
+  {
+    "birdstrikes": "/birdstrikes",
+    "method": "GET"
+  },
+  {
+    "budget": "/budget",
+    "method": "GET"
+  },
+  {
+    "budgets": "/budgets",
+    "method": "GET"
+  },
+  {
+    "burtin": "/burtin",
+    "method": "GET"
+  },
+  {
+    "cars": "/cars",
+    "method": "GET"
+  },
+  {
+    "climate": "/climate",
+    "method": "GET"
+  },
+  {
+    "co2-concentration": "/co2-concentration",
+    "method": "GET"
+  },
+  {
+    "countries": "/countries",
+    "method": "GET"
+  },
+  {
+    "crimea": "/crimea",
+    "method": "GET"
+  },
+  {
+    "disasters": "/disasters",
+    "method": "GET"
+  },
+  {
+    "driving": "/driving",
+    "method": "GET"
+  },
+  {
+    "earthquakes": "/earthquakes",
+    "method": "GET"
+  },
+  {
+    "ffox": "/ffox",
+    "method": "GET"
+  },
+  {
+    "flare": "/flare",
+    "method": "GET"
+  },
+  {
+    "flare-dependencies": "/flare-dependencies",
+    "method": "GET"
+  },
+  {
+    "flights-10k": "/flights-10k",
+    "method": "GET"
+  },
+  {
+    "flights-200k": "/flights-200k",
+    "method": "GET"
+  },
+  {
+    "flights-20k": "/flights-20k",
+    "method": "GET"
+  },
+  {
+    "flights-2k": "/flights-2k",
+    "method": "GET"
+  },
+  {
+    "flights-3m": "/flights-3m",
+    "method": "GET"
+  },
+  {
+    "flights-5k": "/flights-5k",
+    "method": "GET"
+  },
+  {
+    "flights-airport": "/flights-airport",
+    "method": "GET"
+  },
+  {
+    "gapminder": "/gapminder",
+    "method": "GET"
+  },
+  {
+    "gapminder-health-income": "/gapminder-health-income",
+    "method": "GET"
+  },
+  {
+    "gimp": "/gimp",
+    "method": "GET"
+  },
+  {
+    "github": "/github",
+    "method": "GET"
+  },
+  {
+    "graticule": "/graticule",
+    "method": "GET"
+  },
+  {
+    "income": "/income",
+    "method": "GET"
+  },
+  {
+    "iowa-electricity": "/iowa-electricity",
+    "method": "GET"
+  },
+  {
+    "iris": "/iris",
+    "method": "GET"
+  },
+  {
+    "jobs": "/jobs",
+    "method": "GET"
+  },
+  {
+    "la-riots": "/la-riots",
+    "method": "GET"
+  },
+  {
+    "londonBoroughs": "/londonBoroughs",
+    "method": "GET"
+  },
+  {
+    "londonCentroids": "/londonCentroids",
+    "method": "GET"
+  },
+  {
+    "londonTubeLines": "/londonTubeLines",
+    "method": "GET"
+  },
+  {
+    "lookup_groups": "/lookup_groups",
+    "method": "GET"
+  },
+  {
+    "lookup_people": "/lookup_people",
+    "method": "GET"
+  },
+  {
+    "miserables": "/miserables",
+    "method": "GET"
+  },
+  {
+    "monarchs": "/monarchs",
+    "method": "GET"
+  },
+  {
+    "movies": "/movies",
+    "method": "GET"
+  },
+  {
+    "normal-2d": "/normal-2d",
+    "method": "GET"
+  },
+  {
+    "obesity": "/obesity",
+    "method": "GET"
+  },
+  {
+    "ohlc": "/ohlc",
+    "method": "GET"
+  },
+  {
+    "points": "/points",
+    "method": "GET"
+  },
+  {
+    "population": "/population",
+    "method": "GET"
+  },
+  {
+    "population_engineers_hurricanes": "/population_engineers_hurricanes",
+    "method": "GET"
+  },
+  {
+    "seattle-temps": "/seattle-temps",
+    "method": "GET"
+  },
+  {
+    "seattle-weather": "/seattle-weather",
+    "method": "GET"
+  },
+  {
+    "sf-temps": "/sf-temps",
+    "method": "GET"
+  },
+  {
+    "sp500": "/sp500",
+    "method": "GET"
+  },
+  {
+    "stocks": "/stocks",
+    "method": "GET"
+  },
+  {
+    "udistrict": "/udistrict",
+    "method": "GET"
+  },
+  {
+    "unemployment": "/unemployment",
+    "method": "GET"
+  },
+  {
+    "unemployment-across-industries": "/unemployment-across-industries",
+    "method": "GET"
+  },
+  {
+    "uniform-2d": "/uniform-2d",
+    "method": "GET"
+  },
+  {
+    "us-10m": "/us-10m",
+    "method": "GET"
+  },
+  {
+    "us-employment": "/us-employment",
+    "method": "GET"
+  },
+  {
+    "us-state-capitals": "/us-state-capitals",
+    "method": "GET"
+  },
+  {
+    "volcano": "/volcano",
+    "method": "GET"
+  },
+  {
+    "weather": "/weather",
+    "method": "GET"
+  },
+  {
+    "weball26": "/weball26",
+    "method": "GET"
+  },
+  {
+    "wheat": "/wheat",
+    "method": "GET"
+  },
+  {
+    "windvectors": "/windvectors",
+    "method": "GET"
+  },
+  {
+    "world-110m": "/world-110m",
+    "method": "GET"
+  },
+  {
+    "zipcodes": "/zipcodes",
+    "method": "GET"
+  }
+]
