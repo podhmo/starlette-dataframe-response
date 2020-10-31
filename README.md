@@ -62,13 +62,7 @@ If you want to customize the JSON response.
 DataFrameResponse(df, media_type=guess_media_type(request), to_json_orient="columns")
 ```
 
-Or, if the response is created by `DataFrameResponse.from_request()`,
-
-```py
-DataFrameResponse.from_request(request, df)
-```
-
-it is also OK.
+Or, if the response is created by `DataFrameResponse.from_request(request, df)`, it is also OK.
 
 ```console
 $ use orient="columns"
@@ -77,7 +71,7 @@ GET /dataset/<some dataset>?to_json_orient=columns
 
 ### `python -m starlette_dataframe_response.distribute`
 
-And It also includes an example using [vega-datasets](https://github.com/vega/vega-datasets).
+And It also includes examples using [vega-datasets](https://github.com/vega/vega-datasets).
 
 ```console
 $ python -m starlette_dataframe_response.distribute --port 8888
@@ -88,6 +82,7 @@ $ python -m starlette_dataframe_response.distribute --port 8888
 ```
 $ http :8888/
 $ http :8888/iris
+$ http :8888/cars
 $ http :8888/iris  format==csv
 $ http :8888/iris/columns
 $ http :8888/iris/describe
