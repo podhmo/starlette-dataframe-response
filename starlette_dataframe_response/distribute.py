@@ -5,7 +5,7 @@ from starlette.applications import Starlette
 from starlette.requests import Request
 from starlette.responses import JSONResponse
 from starlette.routing import Route
-from . import DataFrameResponse, guess_media_type
+from . import DataFrameResponse
 from .dataset import vega_dataset_provider, DatasetProvider, FunctionDatasetProvider
 
 if t.TYPE_CHECKING:
@@ -39,15 +39,20 @@ async def get_dataset_columns(request: Request) -> Response:
 
 
 async def get_dataset_aggs(request: Request) -> Response:
-    field = request.path_params["field"]
+    fields = [request.path_params["field"]]
     fns = request.query_params.getlist("fn")
     if len(fns) == 0:
         fns = ["min", "max", "mean"]
 
     df: DataFrame = app.dataset_provider.provide_dataset(request.path_params["data"])
 
+    if "," in fields[0]:
+        fields = [f.strip() for f in fields[0].split(",")]
+
     grouped_df: DataFrame = (
-        df.groupby(by=request.path_params["by"]).agg({field: fns}).reset_index()
+        df.groupby(by=request.path_params["by"])
+        .agg({f: fns for f in fields})
+        .reset_index()
     )
 
     # flat index

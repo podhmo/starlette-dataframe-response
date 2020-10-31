@@ -88,6 +88,7 @@ $ http :8888/iris/columns
 $ http :8888/iris/describe
 $ http :8888/iris/groupby/species/aggs/sepalWidth
 $ http :8888/iris/groupby/species/aggs/sepalWidth fn==min fn==max fn==count fn==mean fn==std
+$ http :8888/iris/groupby/species/aggs/sepalWidth,sepalLength
 ```
 
 Or if you want to see an example using a custom data, in above included app [examples/01data-provider/](https://github.com/podhmo/starlette-dataframe-response/tree/main/_examples/01data-provider)
