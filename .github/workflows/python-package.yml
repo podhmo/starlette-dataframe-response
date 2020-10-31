@@ -5,7 +5,7 @@ name: Python package
 
 on:
   push: []
-  pull: []
+  pull_request: []
   schedule:
     - cron:  '0 0 * * 6'
 
