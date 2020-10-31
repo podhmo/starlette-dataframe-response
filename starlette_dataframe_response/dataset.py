@@ -1,6 +1,7 @@
 from __future__ import annotations
 import typing as t
 import typing_extensions as tx
+from starlette.exceptions import HTTPException
 
 if t.TYPE_CHECKING:
     from pandas.core.frame import DataFrame
@@ -25,7 +26,12 @@ class VegaDatasetProvider:
     def provide_dataset(self, name: str) -> DataFrame:
         from vega_datasets import data
 
-        return getattr(data, name)()
+        try:
+            return getattr(data, name)()
+        except AttributeError:
+            raise HTTPException(
+                status_code=404, detail=f"dataset {name!r} is not found"
+            )
 
 
 vega_dataset_provider = VegaDatasetProvider()
